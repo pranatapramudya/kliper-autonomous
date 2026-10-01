@@ -1,0 +1,29 @@
+.env
+.env.local
+.env*.local
+.env.production
+.env.development
+node_modules/
+.next/
+out/
+dist/
+.vercel/
+*.log
+.DS_Store
+
+# Credentials & API Keys
+cookies.txt
+client_secret.json
+tokens.json
+credentials.json
+*.pem
+*.key
+
+# Large Media Files
+*.mp4
+*.wav
+*.mp3
+*.mkv
+video-engine/output*.mp4
+video-engine/CAPTION_READY.txt
+video-engine/public/audio_normalized.wav

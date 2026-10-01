@@ -1,0 +1,57 @@
+{
+  "name": "video-engine",
+  "version": "1.0.0",
+  "description": "My Remotion video",
+  "repository": {},
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@deepgram/sdk": "^5.8.0",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@ffprobe-installer/ffprobe": "^2.1.2",
+    "@google/generative-ai": "^0.24.1",
+    "@remotion/cli": "4.0.513",
+    "@remotion/google-fonts": "^4.0.513",
+    "@remotion/media-utils": "^4.0.513",
+    "@types/node-telegram-bot-api": "^0.64.15",
+    "dotenv": "^17.4.2",
+    "fluent-ffmpeg": "^2.1.3",
+    "node-telegram-bot-api": "^0.66.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.513",
+    "tsx": "^4.23.12",
+    "youtube-dl-exec": "^3.1.13"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.513",
+    "@types/fluent-ffmpeg": "^2.1.28",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "eslint": "9.19.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc",
+    "render-video": "remotion render src/Root.tsx VideoComposition output_ready.mp4",
+    "start:bot": "npx tsx src/telegram.ts",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
+  },
+  "sideEffects": [
+    "*.css"
+  ]
+}
