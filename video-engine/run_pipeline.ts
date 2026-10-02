@@ -84,7 +84,12 @@ export async function runPipeline(inputSource: string): Promise<PipelineResult> 
 
   // TAHAP 1: Ingestion & Transcription
   console.log("== [TAHAP 1] INGESTION & TRANSCRIPTION ==");
-  await downloadVideo(inputSource, baseVideoPath);
+  try {
+    await downloadVideo(inputSource, baseVideoPath);
+  } catch (err: any) {
+    console.error(`[Pipeline] Batal jalan karena download gagal total:`, err.message);
+    return { success: false, clips: [], errorMessage: `Gagal download video dari URL: ${err.message}` };
+  }
   await extractAudio(baseVideoPath, audioPath);
 
   const { words, transcript, uniqueSpeakers } = await transcribeAudio(audioPath);

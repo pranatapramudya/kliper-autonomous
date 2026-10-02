@@ -65,32 +65,32 @@ export async function downloadVideo(url: string, outputPath: string): Promise<st
       await youtubedl(url, options);
       break; // Success
     } catch (error: any) {
-      console.error(`[Transcriber] yt-dlp encountered an error on attempt ${attempt}.`);
-      if (error.stderr) console.error(`[Transcriber] Details: ${error.stderr.split('\n')[0].substring(0, 150)}...`);
-
-      // Check if we can recover from WinError 32 (temp file rename failure)
-      const tempPath = outputPath.replace('.mp4', '.temp.mp4');
-
       // Check if the final file somehow exists already (sometimes yt-dlp succeeds but still throws)
       if (fs.existsSync(outputPath)) {
-        console.log(`[Transcriber] Output file exists. Proceeding...`);
-        break;
+        const stats = fs.statSync(outputPath);
+        if (stats.size > 1024 * 1024) {
+          console.log(`[Transcriber] Output file already exists and is >1MB despite error. Proceeding...`);
+          break;
+        }
       }
 
       // Check if the temp file was created but failed to rename
+      const tempPath = outputPath.replace('.mp4', '.temp.mp4');
       if (fs.existsSync(tempPath)) {
         console.log(`[Transcriber] Found locked temp file ${tempPath}. Attempting manual rename...`);
         try {
           // Wait a bit to let file handles be released
           await new Promise(res => setTimeout(res, 3000));
           fs.renameSync(tempPath, outputPath);
-          console.log(`[Transcriber] Successfully renamed temp file.`);
-          break;
+          console.log(`[Transcriber] Successfully renamed temp file. Proceeding...`);
+          break; // <--- INI KUNCI, KITA ANGGAP SUKSES!
         } catch (renameErr) {
           console.error(`[Transcriber] Manual rename failed:`, renameErr);
           if (attempt === maxRetries) throw error;
         }
       } else {
+        console.error(`[Transcriber] yt-dlp encountered an error on attempt ${attempt}.`);
+        if (error.stderr) console.error(`[Transcriber] Details: ${error.stderr.split('\n')[0].substring(0, 150)}...`);
         if (attempt === maxRetries) throw error;
         console.log(`[Transcriber] Retrying download in 3 seconds...`);
         await new Promise(res => setTimeout(res, 3000));
