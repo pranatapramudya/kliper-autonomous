@@ -13,6 +13,9 @@ jobs:
     name: Render & Upload Video
     runs-on: [self-hosted, windows, video, remotion]
     timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: ./video-engine
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,15 +23,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
+          cache-dependency-path: video-engine/package-lock.json
 
       - name: Install dependencies
-        working-directory: ./video-engine
         run: npm ci
 
       - name: Render Video via Remotion
-        working-directory: ./video-engine
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DEEPGRAM_API_KEY: ${{ secrets.DEEPGRAM_API_KEY }}
