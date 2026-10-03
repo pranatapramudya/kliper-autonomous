@@ -1,0 +1,47 @@
+name: Render Video (Self-Hosted)
+
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'Topik / URL video sumber'
+        required: true
+        type: string
+
+jobs:
+  render:
+    name: Render & Upload Video
+    runs-on: [self-hosted, windows, video, remotion]
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        working-directory: ./video-engine
+        run: npm ci
+
+      - name: Render Video via Remotion
+        working-directory: ./video-engine
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DEEPGRAM_API_KEY: ${{ secrets.DEEPGRAM_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          npx remotion render src/KliperComposition.tsx KliperComposition out/video.mp4 \
+            --browser-connection-timeout=120000 \
+            --concurrency=1
+
+      - name: Upload Video Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-video
+          path: video-engine/out/video.mp4
+          retention-days: 7
