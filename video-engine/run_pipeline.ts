@@ -59,7 +59,7 @@ export interface PipelineResult {
 // ============================================================
 // Core pipeline — bisa dipanggil dari CLI maupun bot Telegram
 // ============================================================
-export async function runPipeline(inputSource: string): Promise<PipelineResult> {
+export async function runPipeline(inputSource: string, options?: { swapSpeakers?: boolean }): Promise<PipelineResult> {
   console.log("🚀 STARTING KLIPER AUTONOMOUS PIPELINE...");
   console.log(`   Input: ${inputSource}`);
 
@@ -123,6 +123,19 @@ export async function runPipeline(inputSource: string): Promise<PipelineResult> 
     clips.forEach(c => {
       if (c.dominant_speaker === hostSpeakerId) c.dominant_speaker = 0;
       else if (c.dominant_speaker === 0) c.dominant_speaker = hostSpeakerId;
+    });
+  }
+
+    // MANUAL OVERRIDE: Jika user minta swap speaker (lewat parameter atau command)
+  if (options?.swapSpeakers) {
+    console.log("🔄 [Pipeline] Manual speaker swap diaktifkan! Menukar Speaker 0 <-> Speaker 1...");
+    words.forEach((w: any) => {
+      if (w.speaker === 0) w.speaker = 1;
+      else if (w.speaker === 1) w.speaker = 0;
+    });
+    clips.forEach(c => {
+      if (c.dominant_speaker === 0) c.dominant_speaker = 1;
+      else if (c.dominant_speaker === 1) c.dominant_speaker = 0;
     });
   }
 

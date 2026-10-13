@@ -287,13 +287,13 @@ async function sendVideoFiles(chatId: number, folderPath: string): Promise<void>
 // ============================================================
 // Core: Jalankan pipeline dan kirim hasilnya ke Telegram
 // ============================================================
-async function runPipelineAndNotify(url: string, chatId: number): Promise<void> {
+async function runPipelineAndNotify(url: string, chatId: number, options?: { swapSpeakers?: boolean }): Promise<void> {
   // Import pipeline secara dinamis agar tidak circular dependency
   const { runPipeline } = await import('../run_pipeline.js');
 
   let result;
   try {
-    result = await runPipeline(url);
+    result = await runPipeline(url, options);
   } catch (err: any) {
     console.error('[Bot] Pipeline error:', err);
     await sendMessage(
@@ -416,7 +416,11 @@ bot.on('message', async (msg: any) => {
   );
 
   try {
-    await runPipelineAndNotify(youtubeUrl, chatId);
+    const shouldSwap = /swap|tukar|kebalik/i.test(text);
+    if (shouldSwap) {
+      console.log('[Bot] 🔄 Keyword swap/tukar/kebalik terdeteksi! Mengaktifkan swapSpeakers.');
+    }
+    await runPipelineAndNotify(youtubeUrl, chatId, { swapSpeakers: shouldSwap });
   } catch (err: any) {
     console.error('[Bot] Uncaught error di runPipelineAndNotify:', err);
     await sendMessage(

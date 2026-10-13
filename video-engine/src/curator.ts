@@ -30,7 +30,7 @@ export async function curateViralMoments(transcriptText: string, campaignContext
 
   // Using gemini-1.5-flash as the fast and efficient model (Gemini 3.6 Flash as mentioned in PRD is likely a typo for gemini-1.5-flash or just a future version name, we'll use gemini-1.5-flash)
   const model = genAI.getGenerativeModel({
-    model: "gemini-3.5-flash",
+    model: "gemini-1.5-flash",
     generationConfig: {
       responseMimeType: "application/json",
       responseSchema: {
@@ -149,7 +149,32 @@ ${transcriptText}
               return parsed.clips || [];
             };
 
-            const [clips1, clips2] = await Promise.all([
+            let detectedHostId = 0;
+try {
+  const introSnippet = transcriptText.substring(0, 3500);
+  const hostCheckRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: { "Authorization": "Bearer " + groqKey, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "openai/gpt-oss-120b",
+      messages: [
+        { role: "system", content: "Analisis cuplikan transkrip podcast berikut. Tentukan siapa yang bertindak sebagai HOST atau pewawancara (yang bertanya, membuka acara, atau memoderasi) dan siapa GUEST (tamu narasumber yang diwawancarai). Outputkan format JSON persis: {\"host_speaker_id\": 0 atau 1}" },
+        { role: "user", content: introSnippet }
+      ],
+      response_format: { type: "json_object" }
+    })
+  });
+  const hostData = await hostCheckRes.json();
+  const parsedHost = JSON.parse(hostData.choices?.[0]?.message?.content || "{}");
+  if (typeof parsedHost.host_speaker_id === "number") {
+    detectedHostId = parsedHost.host_speaker_id;
+    console.log("[Curator] 🎙️ Groq host detector: Speaker " + detectedHostId + " terdeteksi sebagai HOST!");
+  }
+} catch (hErr: any) {
+  console.warn("[Curator] Warning host detection:", hErr.message);
+}
+
+const [clips1, clips2] = await Promise.all([
               callGroq(chunk1, 3, 1),
               callGroq(chunk2, 2, 4)
             ]);
@@ -165,7 +190,7 @@ ${transcriptText}
 
             if (merged.length > 0) {
               console.log(`[Curator] 🚀 Groq fallback succeeded: ${merged.length} viral clips curated!`);
-              return { clips: merged, hostSpeakerId: 0 };
+              return { clips: merged, hostSpeakerId: detectedHostId };
             }
           } catch (groqErr: any) {
             console.error(`[Curator] Groq fallback error:`, groqErr.message || groqErr);
