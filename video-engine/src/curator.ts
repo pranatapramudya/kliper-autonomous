@@ -67,32 +67,35 @@ export async function curateViralMoments(transcriptText: string, campaignContext
     : '';
 
 const prompt = `
-Anda adalah seorang TikTok & YouTube Shorts Content Strategist tingkat dewa yang sudah menghasilkan ratusan konten viral. Tugas Anda adalah menganalisis transkrip dari podcast/video berdurasi panjang dan mengekstrak HANYA momen-momen yang benar-benar berpotensi viral (FYP). 
+Anda adalah seorang TikTok & YouTube Shorts Content Strategist tingkat dewa yang sudah menghasilkan ratusan konten viral berpenonton jutaan views. Tugas Anda adalah menganalisis transkrip dari podcast/video berdurasi panjang dan mengekstrak HANYA momen-momen yang benar-benar berpotensi viral (FYP) tinggi. 
 
-ATURAN JUMLAH KLIP: 
-Anda HARUS menghasilkan TEPAT 9 klip (tidak boleh kurang, tidak boleh lebih). Pilih 9 momen terbaik dari video. Masing-masing klip berdurasi 30-60 detik.
+ATURAN JUMLAH KLIP (KUALITAS POWERFUL > KUANTITAS): 
+Anda HARUS menghasilkan TEPAT 5 klip terbaik (tidak boleh kurang, tidak boleh lebih). Jangan asal potong dan JANGAN pilih klip biasa/filler! HANYA pilih 5 momen PALING EMOSIONAL, PALING MENOHOK, PALING KONTROVERSIAL/INSIGHTFUL, dan PALING BERPOTENSI MEMICU DEBAT/FYP MASIF (10K+ sampai 100K+ views). Masing-masing klip berdurasi 30-60 detik (sweet spot 35-50 detik).
 
-WAJIB: Anda HARUS berpikir dan bernalar secara mendalam dari awal hingga akhir video untuk benar-benar menangkap intisari (essence) terdalam dari obrolan tersebut. Jangan asal memotong! Klip yang Anda pilih HARUS memiliki muatan yang kuat untuk memancing reaksi emosional audiens (entah itu merinding, marah, terharu, atau merasa sangat tercerahkan).
+WAJIB: Anda HARUS berpikir dan bernalar secara mendalam dari awal hingga akhir video untuk benar-benar menangkap intisari (essence) terdalam dari obrolan tersebut. Klip yang Anda pilih HARUS memiliki muatan yang kuat untuk memancing reaksi emosional audiens (merinding, marah, relate, terharu, atau tercerahkan).
 
 ${speakerContext}${campaignInstruction}
-KRITERIA KLIP VIRAL (WAJIB DIPENUHI — TIDAK BISA KOMPROMI):
-1. THE HOOK (PALING KRUSIAL): 3 detik PERTAMA klip harus LANGSUNG MENGUNCI perhatian penonton. Wajib berupa salah satu dari:
-   - Pernyataan kontroversial atau mengejutkan (contoh: "Ini yang tidak pernah diajarkan sekolah...", "Gue hampir bangkrut karena ini...")
-   - Angka atau fakta yang tidak terduga (contoh: "Gue bayar Rp 500 juta buat belajar ini...")
-   - Pertanyaan retoris yang memicu rasa ingin tahu (contoh: "Kenapa orang sukses tidak pernah cerita soal ini?")
-   - LARANGAN KERAS: JANGAN pilih klip yang dimulai dengan sapaan ("halo", "hai", "oke jadi"), basa-basi ("ehm", "jadi begini"), atau kalimat transisi yang tidak standalone.
-2. DEEP ESSENCE, HIGH EMOTION & COMEDY: Isi klip harus memicu muatan emosional tinggi (marah, terharu, takjub), memancing perdebatan sengit, momen SANGAT LUCU/KOMEDI yang bikin ngakak, atau mengungkapkan insight eksklusif (daging) yang mengubah cara pandang penonton. Ambil interaksi obrolan yang padat, potong basa-basi yang tidak perlu.
-3. STANDALONE: Penonton yang belum pernah tahu channel ini harus bisa sepenuhnya memahami dan menikmati klip tanpa konteks tambahan.
-4. VIRALITY SCORE: Prioritaskan momen yang akan membuat penonton men-share klip ke teman mereka atau menyimpan (bookmark).
+KRITERIA KLIP VIRAL (WAJIB DIPENUHI - STANDAR TINGGI FYP):
+1. THE HOOK (PALING KRUSIAL - DETIK 0 SAMPAI 3): 3 detik PERTAMA klip harus LANGSUNG MENGUNCI perhatian penonton. Wajib berupa salah satu dari:
+   - Pernyataan kontroversial, provokatif, atau mengejutkan (contoh: "Ini alasan kenapa generasi muda sekarang hopeless...", "Kuliah itu scam kalau...", "Gue hampir hancur karena hal ini...")
+   - Opini kontraintuitif yang menabrak pemikiran umum orang banyak.
+   - Angka ekstrem atau fakta tak terduga (contoh: "Gue hilang 5 Milyar dalam semalam...", "Umur 20 udah punya 1 M...")
+   - Pertanyaan menusuk rasa penasaran / emosi.
+   - LARANGAN KERAS: JANGAN pilih klip yang dimulai dengan sapaan ("halo", "hai", "oke jadi"), basa-basi tongkrongan santai ("ehm", "mobil lu apa", "jadi begini"), atau pembukaan kronologis lambat ("tahun 2015 gua..."). Potong langsung ke inti punchline yang paling meledak!
+2. UNIVERSAL RELATABILITY & RESONANCE (FORMULA MENANG 10K+ VIEWS):
+   - Prioritaskan topik yang menyentuh ranah MASSIF & RELATABLE bagi jutaan penonton (mindset sukses/gagal, realita karier/finansial, masalah generasi muda/Gen Z/Millennial, attention span/gadget, unwritten rules kehidupan, atau pelajaran pahit).
+   - HINDARI topik yang terlalu teknis, segmented, atau rumit (seperti teori coding rumit, regulasi hukum spesifik, atau matematika/istilah sempit yang membuat orang awam langsung swipe pergi).
+3. DEEP ESSENCE & HIGH ENGAGEMENT: Isi klip harus memicu perdebatan sengit di kolom komentar, share ke teman, atau bookmark. Klip yang memancing opini pro & kontra terbukti mendapatkan bobot watch time dan share tertinggi.
+4. STANDALONE & NATURAL ENDING: Penonton baru harus bisa paham 100% tanpa konteks luar. Klip HARUS berakhir di kalimat yang utuh dan berkesan (punchline penutup).
 
 INSTRUKSI EKSTRAKSI (TIMESTAMPS & TITLE):
-- \`title\` (Maksimal 7 kata): Buatlah judul (Hook Text) yang SANGAT TAJAM, PROVOKATIF, dan BIKIN PENASARAN. Ambil intisari paling "menohok" dari ucapan subjek, dan ubah menjadi kalimat Hook yang sangat kuat (punchy). Judul ini adalah teks raksasa pertama yang dilihat penonton di layar! Boleh meringkas atau memoles kata-kata aslinya agar lebih dramatis dan memancing klik (CTR tinggi), asalkan konteksnya tetap akurat dan tidak berbohong. Contoh: "Ternyata Ini Rahasia Besarnya..." atau "Gue Hampir Hancur Karena Hal Ini".
-- Tentukan \`start_time\` (dalam detik) tepat sebelum subjek melontarkan kalimat hook-nya (kalimat yang paling mengejutkan/kontroversial).
-- Tentukan \`end_time\` (dalam detik) WAJIB jatuh di AKHIR KALIMAT YANG UTUH — setelah titik (.), tanda tanya (?), atau tanda seru (!). DILARANG KERAS memotong di tengah kalimat. Jika argumen belum selesai, perpanjang sampai kalimat penutup yang natural.
-- Pastikan durasi (end_time - start_time) berada di kisaran 30 hingga 60 detik. Boleh sedikit lebih panjang (max 70 detik) jika diperlukan untuk menyelesaikan kalimat terakhir.
-- Distribusikan klip secara merata di sepanjang video agar mencakup beragam momen menarik, BUKAN hanya dari bagian awal.
+- \`title\` (Maksimal 7 kata): Buatlah judul (Hook Text) yang SANGAT TAJAM, PROVOKATIF, BERBENTUK PERTANYAAN EMOSIONAL ATAU PERNYATAAN MENOHOK (contoh: "Kenapa Generasi Muda Sekarang Hopeless?", "Alasan Kenapa Orang Rajin Tetap Miskin"). Judul ini teks pertama yang dilihat penonton di layar! Boleh memoles agar CTR tinggi asalkan konteks akurat.
+- Tentukan \`start_time\` (dalam detik) tepat di awal kata punchline/hook tanpa jeda kosong.
+- Tentukan \`end_time\` (dalam detik) WAJIB jatuh di AKHIR KALIMAT YANG UTUH - setelah tanda titik (.), tanda tanya (?), atau tanda seru (!). DILARANG KERAS memotong di tengah kalimat.
+- Durasi (end_time - start_time) wajib 30 hingga 60 detik (sweet spot 35-50 detik).
+- Distribusikan 5 klip terbaik ini dari momen-momen puncak obrolan sepanjang video.
 - Isi \`dominant_speaker\` dengan angka Speaker ID (0, 1, 2, dst) yang paling banyak berbicara di klip tersebut.
-- Wajib isi \`host_speaker_id\` (di luar array klip) dengan angka Speaker ID yang berperan sebagai Host / Pewawancara / Pemilik Podcast di video ini secara keseluruhan.
+- Wajib isi \`host_speaker_id\` (di luar array klip) dengan angka Speaker ID yang berperan sebagai Host / Pewawancara di video ini.
 
 Berikut adalah transkrip videonya:
 ---

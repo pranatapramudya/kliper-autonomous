@@ -60,7 +60,14 @@ export async function detectVideoLayout(videoPath: string): Promise<VideoLayout>
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-3.5-flash-lite" });
 
-    const prompt = `Analyze these 3 frames from a video. Does the layout consistently show two people side-by-side (SIDE_BY_SIDE), a single centered person (SINGLE_CENTERED), or a mix of wide and tight shots (MIXED)? Return ONLY a strict JSON object: {"layout": "SIDE_BY_SIDE"} (or the other options). No markdown, no extra text.`;
+    const prompt = `Analyze these 3 frames from a video for short-form vertical video (TikTok/Reels 9:16).
+We need the best layout to maximize watch time and avoid ugly letterbox black/blurry bars:
+- SIDE_BY_SIDE: If two people are visible in a podcast table / discussion setup (we will split top/bottom so both faces are close-up and vertical).
+- SINGLE_CENTERED: If a single person/speaker is prominent or centered (we will crop to full-screen vertical portrait).
+- MIXED: Only if the video is extremely chaotic multicam where neither format fits.
+
+IMPORTANT: Strongly prefer SINGLE_CENTERED or SIDE_BY_SIDE so the screen is completely filled vertically with human faces and expressions.
+Return ONLY a strict JSON object: {"layout": "SINGLE_CENTERED"} (or "SIDE_BY_SIDE" or "MIXED"). No markdown, no extra text.`;
 
     const promptParts = [
       { text: prompt },
