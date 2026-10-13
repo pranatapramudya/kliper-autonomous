@@ -82,28 +82,15 @@ Transkrip Time-Coded:
   `;
 
   let brollDefs: any[] = [];
-  const maxRetries = 3;
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    try {
-      if (attempt > 1) {
-        console.log(`[B-Roll] Retrying AI B-Roll generation (Attempt ${attempt}/${maxRetries})...`);
-      }
-      const result = await model.generateContent(prompt);
-      const data = JSON.parse(result.response.text());
-      if (data.brolls && Array.isArray(data.brolls)) {
-        brollDefs = data.brolls;
-        break; // Success, exit retry loop
-      }
-    } catch (error: any) {
-      if (attempt === maxRetries) {
-        console.error(`[B-Roll] Failed to generate B-Roll definitions from Gemini after ${maxRetries} attempts:`, error);
-        return [];
-      }
-      const isRateLimit = error?.message?.includes('429') || error?.status === 429;
-      const waitTime = isRateLimit ? 65000 : 5000;
-      console.warn(`[B-Roll] AI Error on attempt ${attempt}: ${error.message || error}. Waiting ${waitTime / 1000} seconds before retry...`);
-      await new Promise(resolve => setTimeout(resolve, waitTime));
+  try {
+    const result = await model.generateContent(prompt);
+    const data = JSON.parse(result.response.text());
+    if (data.brolls && Array.isArray(data.brolls)) {
+      brollDefs = data.brolls;
     }
+  } catch (error: any) {
+    console.warn(`[B-Roll] AI B-Roll skipped (${error.message || error}), rendering clean high-retention speaker view.`);
+    return [];
   }
 
   console.log(`[B-Roll] Gemini suggested ${brollDefs.length} B-Roll(s) for clip ${clipId}.`);

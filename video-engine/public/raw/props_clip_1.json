@@ -1,0 +1,1353 @@
+{
+  "clipVideoUrl": "/raw/clip_1.mp4",
+  "words": [
+    {
+      "word": "turun",
+      "punctuated_word": "turun",
+      "start": 0.11509999999998399,
+      "end": 0.27510000000006585,
+      "speaker": 0,
+      "confidence": 0.99902344
+    },
+    {
+      "word": "6%",
+      "punctuated_word": "6%",
+      "start": 0.27510000000006585,
+      "end": 0.7751000000000658,
+      "speaker": 0,
+      "confidence": 0.748291
+    },
+    {
+      "word": "itu",
+      "punctuated_word": "itu",
+      "start": 0.9950999999998658,
+      "end": 1.4950999999998658,
+      "speaker": 0,
+      "confidence": 0.9970703
+    },
+    {
+      "word": "aku",
+      "punctuated_word": "aku",
+      "start": 2.3899999999998727,
+      "end": 2.6299999999998818,
+      "speaker": 0,
+      "confidence": 0.921875
+    },
+    {
+      "word": "cut",
+      "punctuated_word": "cut",
+      "start": 2.6299999999998818,
+      "end": 2.9500000000000455,
+      "speaker": 0,
+      "confidence": 0.88134766
+    },
+    {
+      "word": "loss",
+      "punctuated_word": "loss,",
+      "start": 2.9500000000000455,
+      "end": 3.269999999999982,
+      "speaker": 0,
+      "confidence": 0.59973145
+    },
+    {
+      "word": "sebenarnya",
+      "punctuated_word": "sebenarnya",
+      "start": 3.269999999999982,
+      "end": 3.769999999999982,
+      "speaker": 0,
+      "confidence": 0.5917969
+    },
+    {
+      "word": "nggak",
+      "punctuated_word": "nggak",
+      "start": 3.990000000000009,
+      "end": 4.149999999999864,
+      "speaker": 0,
+      "confidence": 0.49316406
+    },
+    {
+      "word": "terlalu",
+      "punctuated_word": "terlalu",
+      "start": 4.149999999999864,
+      "end": 4.629999999999882,
+      "speaker": 0,
+      "confidence": 0.7241211
+    },
+    {
+      "word": "sangat",
+      "punctuated_word": "sangat",
+      "start": 4.629999999999882,
+      "end": 4.9500000000000455,
+      "speaker": 0,
+      "confidence": 0.69970703
+    },
+    {
+      "word": "objektif",
+      "punctuated_word": "objektif",
+      "start": 4.9500000000000455,
+      "end": 5.430000000000064,
+      "speaker": 0,
+      "confidence": 0.9921875
+    },
+    {
+      "word": "sih",
+      "punctuated_word": "sih",
+      "start": 5.430000000000064,
+      "end": 5.509999999999991,
+      "speaker": 0,
+      "confidence": 0.7963867
+    },
+    {
+      "word": "di",
+      "punctuated_word": "di",
+      "start": 5.509999999999991,
+      "end": 5.669999999999845,
+      "speaker": 0,
+      "confidence": 0.80566406
+    },
+    {
+      "word": "sana",
+      "punctuated_word": "sana",
+      "start": 5.669999999999845,
+      "end": 5.9099999999998545,
+      "speaker": 0,
+      "confidence": 0.99902344
+    },
+    {
+      "word": "karena",
+      "punctuated_word": "karena",
+      "start": 5.9099999999998545,
+      "end": 6.069999999999936,
+      "speaker": 0,
+      "confidence": 0.6923828
+    },
+    {
+      "word": "aku",
+      "punctuated_word": "aku",
+      "start": 6.069999999999936,
+      "end": 6.309999999999945,
+      "speaker": 0,
+      "confidence": 0.9140625
+    },
+    {
+      "word": "melihat",
+      "punctuated_word": "melihat",
+      "start": 6.309999999999945,
+      "end": 6.809999999999945,
+      "speaker": 0,
+      "confidence": 0.53125
+    },
+    {
+      "word": "walet",
+      "punctuated_word": "walet",
+      "start": 6.9500000000000455,
+      "end": 7.269999999999982,
+      "speaker": 0,
+      "confidence": 0.6402588
+    },
+    {
+      "word": "wallet",
+      "punctuated_word": "wallet",
+      "start": 7.269999999999982,
+      "end": 7.669999999999845,
+      "speaker": 0,
+      "confidence": 0.30517578
+    },
+    {
+      "word": "yang",
+      "punctuated_word": "yang",
+      "start": 7.669999999999845,
+      "end": 7.9099999999998545,
+      "speaker": 0,
+      "confidence": 0.9941406
+    },
+    {
+      "word": "bagus",
+      "punctuated_word": "bagus,",
+      "start": 7.9099999999998545,
+      "end": 8.389999999999873,
+      "speaker": 0,
+      "confidence": 0.79589844
+    },
+    {
+      "word": "timnya",
+      "punctuated_word": "timnya",
+      "start": 8.389999999999873,
+      "end": 8.789999999999964,
+      "speaker": 0,
+      "confidence": 0.89501953
+    },
+    {
+      "word": "masih",
+      "punctuated_word": "masih",
+      "start": 8.789999999999964,
+      "end": 9.029999999999973,
+      "speaker": 0,
+      "confidence": 0.96875
+    },
+    {
+      "word": "ngehold",
+      "punctuated_word": "ngehold",
+      "start": 9.029999999999973,
+      "end": 9.509999999999991,
+      "speaker": 0,
+      "confidence": 0.81030273
+    },
+    {
+      "word": "dan",
+      "punctuated_word": "dan",
+      "start": 9.509999999999991,
+      "end": 9.589899999999943,
+      "speaker": 0,
+      "confidence": 0.9658203
+    },
+    {
+      "word": "lain",
+      "punctuated_word": "lain",
+      "start": 9.589899999999943,
+      "end": 9.829999999999927,
+      "speaker": 0,
+      "confidence": 0.94628906
+    },
+    {
+      "word": "sebagainya",
+      "punctuated_word": "sebagainya",
+      "start": 9.829999999999927,
+      "end": 10.329999999999927,
+      "speaker": 0,
+      "confidence": 0.9951172
+    },
+    {
+      "word": "tapi",
+      "punctuated_word": "tapi",
+      "start": 10.389999999999873,
+      "end": 10.549999999999955,
+      "speaker": 0,
+      "confidence": 0.42114258
+    },
+    {
+      "word": "aku",
+      "punctuated_word": "aku",
+      "start": 10.549999999999955,
+      "end": 10.789999999999964,
+      "speaker": 0,
+      "confidence": 0.98535156
+    },
+    {
+      "word": "malah",
+      "punctuated_word": "malah",
+      "start": 10.789999999999964,
+      "end": 10.950000000000045,
+      "speaker": 0,
+      "confidence": 0.90722656
+    },
+    {
+      "word": "decide",
+      "punctuated_word": "decide",
+      "start": 10.950000000000045,
+      "end": 11.430000000000064,
+      "speaker": 0,
+      "confidence": 0.8312988
+    },
+    {
+      "word": "untuk",
+      "punctuated_word": "untuk",
+      "start": 11.430000000000064,
+      "end": 11.589899999999943,
+      "speaker": 0,
+      "confidence": 0.71191406
+    },
+    {
+      "word": "cut",
+      "punctuated_word": "cut",
+      "start": 11.589899999999943,
+      "end": 11.829999999999927,
+      "speaker": 0,
+      "confidence": 0.9902344
+    },
+    {
+      "word": "loss",
+      "punctuated_word": "loss",
+      "start": 11.829999999999927,
+      "end": 12.069999999999936,
+      "speaker": 0,
+      "confidence": 0.96875
+    },
+    {
+      "word": "juga",
+      "punctuated_word": "juga",
+      "start": 12.069999999999936,
+      "end": 12.309999999999945,
+      "speaker": 0,
+      "confidence": 0.9506836
+    },
+    {
+      "word": "karena",
+      "punctuated_word": "karena",
+      "start": 12.309999999999945,
+      "end": 12.469900000000052,
+      "speaker": 0,
+      "confidence": 0.7578125
+    },
+    {
+      "word": "ya",
+      "punctuated_word": "ya",
+      "start": 12.469900000000052,
+      "end": 12.710000000000036,
+      "speaker": 0,
+      "confidence": 0.69873047
+    },
+    {
+      "word": "takut",
+      "punctuated_word": "takut",
+      "start": 12.710000000000036,
+      "end": 12.950000000000045,
+      "speaker": 0,
+      "confidence": 0.98828125
+    },
+    {
+      "word": "juga",
+      "punctuated_word": "juga",
+      "start": 12.950000000000045,
+      "end": 13.109899999999925,
+      "speaker": 0,
+      "confidence": 0.9892578
+    },
+    {
+      "word": "in",
+      "punctuated_word": "in",
+      "start": 13.109899999999925,
+      "end": 13.349899999999934,
+      "speaker": 0,
+      "confidence": 0.9111328
+    },
+    {
+      "word": "a",
+      "punctuated_word": "a",
+      "start": 13.349899999999934,
+      "end": 13.430000000000064,
+      "speaker": 0,
+      "confidence": 0.73583984
+    },
+    {
+      "word": "way",
+      "punctuated_word": "way",
+      "start": 13.430000000000064,
+      "end": 13.669999999999845,
+      "speaker": 0,
+      "confidence": 0.9970703
+    },
+    {
+      "word": "kayak",
+      "punctuated_word": "kayak",
+      "start": 13.669999999999845,
+      "end": 13.829999999999927,
+      "speaker": 0,
+      "confidence": 0.8432617
+    },
+    {
+      "word": "trauma",
+      "punctuated_word": "trauma",
+      "start": 13.829999999999927,
+      "end": 14.229900000000043,
+      "speaker": 0,
+      "confidence": 0.35205078
+    },
+    {
+      "word": "perang",
+      "punctuated_word": "perang",
+      "start": 14.229900000000043,
+      "end": 14.389999999999873,
+      "speaker": 0,
+      "confidence": 0.95703125
+    },
+    {
+      "word": "dan",
+      "punctuated_word": "dan",
+      "start": 14.389999999999873,
+      "end": 14.764999999999873,
+      "speaker": 0,
+      "confidence": 0.87597656
+    },
+    {
+      "word": "sebagainya",
+      "punctuated_word": "sebagainya,",
+      "start": 15.24499999999989,
+      "end": 15.724899999999934,
+      "speaker": 0,
+      "confidence": 0.59399414
+    },
+    {
+      "word": "yaudah",
+      "punctuated_word": "yaudah,",
+      "start": 15.724899999999934,
+      "end": 15.805000000000064,
+      "speaker": 0,
+      "confidence": 0.3046875
+    },
+    {
+      "word": "i",
+      "punctuated_word": "I",
+      "start": 15.805000000000064,
+      "end": 15.964899999999943,
+      "speaker": 0,
+      "confidence": 0.3383789
+    },
+    {
+      "word": "cut",
+      "punctuated_word": "cut",
+      "start": 15.964899999999943,
+      "end": 16.125,
+      "speaker": 0,
+      "confidence": 0.98291016
+    },
+    {
+      "word": "loss",
+      "punctuated_word": "loss",
+      "start": 16.125,
+      "end": 16.625,
+      "speaker": 0,
+      "confidence": 0.98291016
+    },
+    {
+      "word": "mereka",
+      "punctuated_word": "mereka",
+      "start": 17.24499999999989,
+      "end": 17.644999999999982,
+      "speaker": 0,
+      "confidence": 0.49902344
+    },
+    {
+      "word": "turun",
+      "punctuated_word": "turun",
+      "start": 17.644999999999982,
+      "end": 17.88499999999999,
+      "speaker": 0,
+      "confidence": 0.9970703
+    },
+    {
+      "word": "ke",
+      "punctuated_word": "ke",
+      "start": 17.88499999999999,
+      "end": 18.125,
+      "speaker": 0,
+      "confidence": 0.9560547
+    },
+    {
+      "word": "6",
+      "punctuated_word": "6",
+      "start": 18.125,
+      "end": 18.36500000000001,
+      "speaker": 0,
+      "confidence": 0.9199219
+    },
+    {
+      "word": "juta",
+      "punctuated_word": "juta",
+      "start": 18.36500000000001,
+      "end": 18.604900000000043,
+      "speaker": 0,
+      "confidence": 0.9526367
+    },
+    {
+      "word": "market",
+      "punctuated_word": "market",
+      "start": 18.604900000000043,
+      "end": 19.00499999999988,
+      "speaker": 0,
+      "confidence": 0.9658203
+    },
+    {
+      "word": "cap",
+      "punctuated_word": "cap",
+      "start": 19.00499999999988,
+      "end": 19.404999999999973,
+      "speaker": 0,
+      "confidence": 0.8964844
+    },
+    {
+      "word": "langsung",
+      "punctuated_word": "langsung",
+      "start": 19.404999999999973,
+      "end": 19.805000000000064,
+      "speaker": 0,
+      "confidence": 0.49951172
+    },
+    {
+      "word": "terbang",
+      "punctuated_word": "terbang",
+      "start": 19.805000000000064,
+      "end": 20.044999999999845,
+      "speaker": 0,
+      "confidence": 0.99316406
+    },
+    {
+      "word": "ke",
+      "punctuated_word": "ke",
+      "start": 20.044999999999845,
+      "end": 20.284999999999854,
+      "speaker": 0,
+      "confidence": 0.90234375
+    },
+    {
+      "word": "200",
+      "punctuated_word": "200",
+      "start": 20.284999999999854,
+      "end": 20.524999999999864,
+      "speaker": 0,
+      "confidence": 0.9902344
+    },
+    {
+      "word": "juta",
+      "punctuated_word": "juta",
+      "start": 20.524999999999864,
+      "end": 21.00499999999988,
+      "speaker": 0,
+      "confidence": 0.9892578
+    },
+    {
+      "word": "gitu",
+      "punctuated_word": "gitu,",
+      "start": 21.00499999999988,
+      "end": 21.50499999999988,
+      "speaker": 0,
+      "confidence": 0.3831787
+    },
+    {
+      "word": "itu",
+      "punctuated_word": "itu",
+      "start": 21.565000000000055,
+      "end": 21.88499999999999,
+      "speaker": 0,
+      "confidence": 0.9223633
+    },
+    {
+      "word": "lumayan",
+      "punctuated_word": "lumayan",
+      "start": 21.88499999999999,
+      "end": 22.204899999999952,
+      "speaker": 0,
+      "confidence": 0.9892578
+    },
+    {
+      "word": "nyesek",
+      "punctuated_word": "nyesek",
+      "start": 22.204899999999952,
+      "end": 22.704899999999952,
+      "speaker": 0,
+      "confidence": 0.5649414
+    },
+    {
+      "word": "padahal",
+      "punctuated_word": "Padahal",
+      "start": 23.484899999999925,
+      "end": 23.724899999999934,
+      "speaker": 0,
+      "confidence": 0.42114258
+    },
+    {
+      "word": "kalau",
+      "punctuated_word": "kalau",
+      "start": 23.724899999999934,
+      "end": 24.044999999999845,
+      "speaker": 0,
+      "confidence": 0.9453125
+    },
+    {
+      "word": "ngehold",
+      "punctuated_word": "ngehold,",
+      "start": 24.044999999999845,
+      "end": 24.524999999999864,
+      "speaker": 0,
+      "confidence": 0.6546224
+    },
+    {
+      "word": "jadi",
+      "punctuated_word": "jadi",
+      "start": 24.524999999999864,
+      "end": 24.844900000000052,
+      "speaker": 0,
+      "confidence": 0.49804688
+    },
+    {
+      "word": "profitnya",
+      "punctuated_word": "profitnya",
+      "start": 24.844900000000052,
+      "end": 25.325000000000045,
+      "speaker": 0,
+      "confidence": 0.90478516
+    },
+    {
+      "word": "lumayan",
+      "punctuated_word": "lumayan",
+      "start": 25.325000000000045,
+      "end": 25.565000000000055,
+      "speaker": 0,
+      "confidence": 0.9941406
+    },
+    {
+      "word": "gede",
+      "punctuated_word": "gede",
+      "start": 25.565000000000055,
+      "end": 25.964899999999943,
+      "speaker": 0,
+      "confidence": 0.97314453
+    },
+    {
+      "word": "gitu",
+      "punctuated_word": "gitu",
+      "start": 25.964899999999943,
+      "end": 26.044999999999845,
+      "speaker": 0,
+      "confidence": 0.62402344
+    },
+    {
+      "word": "ya",
+      "punctuated_word": "ya",
+      "start": 26.044999999999845,
+      "end": 26.524999999999864,
+      "speaker": 0,
+      "confidence": 0.6274414
+    },
+    {
+      "word": "bener",
+      "punctuated_word": "Bener,",
+      "start": 26.524999999999864,
+      "end": 26.844900000000052,
+      "speaker": 1,
+      "confidence": 0.51452637
+    },
+    {
+      "word": "bener",
+      "punctuated_word": "bener",
+      "start": 26.844900000000052,
+      "end": 27.164999999999964,
+      "speaker": 1,
+      "confidence": 0.56152344
+    },
+    {
+      "word": "pasti",
+      "punctuated_word": "pasti",
+      "start": 27.164999999999964,
+      "end": 27.24499999999989,
+      "speaker": 1,
+      "confidence": 0.7441406
+    },
+    {
+      "word": "gede",
+      "punctuated_word": "gede",
+      "start": 27.24499999999989,
+      "end": 27.404999999999973,
+      "speaker": 1,
+      "confidence": 0.9790039
+    },
+    {
+      "word": "banget",
+      "punctuated_word": "banget",
+      "start": 27.404999999999973,
+      "end": 27.904999999999973,
+      "speaker": 1,
+      "confidence": 0.99902344
+    },
+    {
+      "word": "oke",
+      "punctuated_word": "Oke,",
+      "start": 28.204899999999952,
+      "end": 28.704899999999952,
+      "speaker": 1,
+      "confidence": 0.5925293
+    },
+    {
+      "word": "itu",
+      "punctuated_word": "itu",
+      "start": 29.00499999999988,
+      "end": 29.164999999999964,
+      "speaker": 1,
+      "confidence": 0.9580078
+    },
+    {
+      "word": "tuh",
+      "punctuated_word": "tuh",
+      "start": 29.164999999999964,
+      "end": 29.325000000000045,
+      "speaker": 1,
+      "confidence": 0.53515625
+    },
+    {
+      "word": "gimana",
+      "punctuated_word": "gimana",
+      "start": 29.325000000000045,
+      "end": 29.805000000000064,
+      "speaker": 1,
+      "confidence": 0.97265625
+    },
+    {
+      "word": "sih",
+      "punctuated_word": "sih",
+      "start": 29.805000000000064,
+      "end": 30.049999999999955,
+      "speaker": 1,
+      "confidence": 0.85595703
+    },
+    {
+      "word": "misalnya",
+      "punctuated_word": "misalnya,",
+      "start": 30.210000000000036,
+      "end": 30.710000000000036,
+      "speaker": 1,
+      "confidence": 0.69506836
+    },
+    {
+      "word": "apakah",
+      "punctuated_word": "apakah",
+      "start": 31.649999999999864,
+      "end": 31.730000000000018,
+      "speaker": 1,
+      "confidence": 0.7475586
+    },
+    {
+      "word": "sekali",
+      "punctuated_word": "sekali",
+      "start": 31.730000000000018,
+      "end": 31.970000000000027,
+      "speaker": 1,
+      "confidence": 0.9902344
+    },
+    {
+      "word": "doang",
+      "punctuated_word": "doang",
+      "start": 31.970000000000027,
+      "end": 32.289999999999964,
+      "speaker": 1,
+      "confidence": 0.98535156
+    },
+    {
+      "word": "atau",
+      "punctuated_word": "atau",
+      "start": 32.289999999999964,
+      "end": 32.52999999999997,
+      "speaker": 1,
+      "confidence": 0.9506836
+    },
+    {
+      "word": "pernah",
+      "punctuated_word": "pernah",
+      "start": 32.52999999999997,
+      "end": 32.84999999999991,
+      "speaker": 1,
+      "confidence": 0.99316406
+    },
+    {
+      "word": "berkalikali",
+      "punctuated_word": "berkalikali",
+      "start": 32.84999999999991,
+      "end": 33.34999999999991,
+      "speaker": 1,
+      "confidence": 0.97265625
+    },
+    {
+      "word": "kayak",
+      "punctuated_word": "kayak",
+      "start": 33.49000000000001,
+      "end": 33.649999999999864,
+      "speaker": 1,
+      "confidence": 0.6635742
+    },
+    {
+      "word": "gitu",
+      "punctuated_word": "gitu?",
+      "start": 33.649999999999864,
+      "end": 34.149999999999864,
+      "speaker": 1,
+      "confidence": 0.93310547
+    },
+    {
+      "word": "mungkin",
+      "punctuated_word": "Mungkin",
+      "start": 34.36999999999989,
+      "end": 34.76999999999998,
+      "speaker": 0,
+      "confidence": 0.99121094
+    },
+    {
+      "word": "yang",
+      "punctuated_word": "yang",
+      "start": 34.76999999999998,
+      "end": 34.930000000000064,
+      "speaker": 0,
+      "confidence": 0.96777344
+    },
+    {
+      "word": "kayak",
+      "punctuated_word": "kayak",
+      "start": 34.930000000000064,
+      "end": 35.08999999999992,
+      "speaker": 0,
+      "confidence": 0.92822266
+    },
+    {
+      "word": "gitu",
+      "punctuated_word": "gitu,",
+      "start": 35.08999999999992,
+      "end": 35.58999999999992,
+      "speaker": 0,
+      "confidence": 0.8405762
+    },
+    {
+      "word": "kalau",
+      "punctuated_word": "kalau",
+      "start": 36.36999999999989,
+      "end": 36.86999999999989,
+      "speaker": 0,
+      "confidence": 0.84814453
+    },
+    {
+      "word": "tradertrader",
+      "punctuated_word": "tradertrader",
+      "start": 36.930000000000064,
+      "end": 37.430000000000064,
+      "speaker": 0,
+      "confidence": 0.9588216
+    },
+    {
+      "word": "yang",
+      "punctuated_word": "yang",
+      "start": 37.569999999999936,
+      "end": 37.73000000000002,
+      "speaker": 0,
+      "confidence": 0.96875
+    },
+    {
+      "word": "lain",
+      "punctuated_word": "lain",
+      "start": 37.73000000000002,
+      "end": 37.97000000000003,
+      "speaker": 0,
+      "confidence": 0.9951172
+    },
+    {
+      "word": "juga",
+      "punctuated_word": "juga",
+      "start": 37.97000000000003,
+      "end": 38.049999999999955,
+      "speaker": 0,
+      "confidence": 0.8911133
+    },
+    {
+      "word": "pasti",
+      "punctuated_word": "pasti",
+      "start": 38.049999999999955,
+      "end": 38.36999999999989,
+      "speaker": 0,
+      "confidence": 0.98828125
+    },
+    {
+      "word": "ngerasain",
+      "punctuated_word": "ngerasain",
+      "start": 38.36999999999989,
+      "end": 38.84999999999991,
+      "speaker": 0,
+      "confidence": 0.9716797
+    },
+    {
+      "word": "sih",
+      "punctuated_word": "sih,",
+      "start": 38.84999999999991,
+      "end": 39.00999999999999,
+      "speaker": 0,
+      "confidence": 0.7434082
+    },
+    {
+      "word": "jadi",
+      "punctuated_word": "jadi",
+      "start": 39.00999999999999,
+      "end": 39.32999999999993,
+      "speaker": 0,
+      "confidence": 0.97802734
+    },
+    {
+      "word": "hal",
+      "punctuated_word": "hal",
+      "start": 39.32999999999993,
+      "end": 39.649999999999864,
+      "speaker": 0,
+      "confidence": 0.9902344
+    },
+    {
+      "word": "tersebut",
+      "punctuated_word": "tersebut",
+      "start": 39.649999999999864,
+      "end": 40.049999999999955,
+      "speaker": 0,
+      "confidence": 0.9873047
+    },
+    {
+      "word": "sangatsangat",
+      "punctuated_word": "sangatsangat",
+      "start": 40.049999999999955,
+      "end": 40.549999999999955,
+      "speaker": 0,
+      "confidence": 0.8701172
+    },
+    {
+      "word": "normal",
+      "punctuated_word": "normal",
+      "start": 40.6099999999999,
+      "end": 40.930000000000064,
+      "speaker": 0,
+      "confidence": 0.9980469
+    },
+    {
+      "word": "gitu",
+      "punctuated_word": "gitu.",
+      "start": 40.930000000000064,
+      "end": 41.430000000000064,
+      "speaker": 0,
+      "confidence": 0.4970703
+    },
+    {
+      "word": "ya",
+      "punctuated_word": "Ya,",
+      "start": 41.809999999999945,
+      "end": 42.309999999999945,
+      "speaker": 1,
+      "confidence": 0.6921387
+    },
+    {
+      "word": "tapi",
+      "punctuated_word": "tapi",
+      "start": 42.6099999999999,
+      "end": 43.00999999999999,
+      "speaker": 1,
+      "confidence": 0.9902344
+    },
+    {
+      "word": "gimana",
+      "punctuated_word": "gimana",
+      "start": 43.00999999999999,
+      "end": 43.409999999999854,
+      "speaker": 1,
+      "confidence": 0.9086914
+    },
+    {
+      "word": "sih",
+      "punctuated_word": "sih",
+      "start": 43.409999999999854,
+      "end": 43.649999999999864,
+      "speaker": 1,
+      "confidence": 0.9902344
+    },
+    {
+      "word": "mungkin",
+      "punctuated_word": "mungkin",
+      "start": 43.649999999999864,
+      "end": 43.88999999999987,
+      "speaker": 1,
+      "confidence": 0.8256836
+    },
+    {
+      "word": "kayak",
+      "punctuated_word": "kayak",
+      "start": 43.88999999999987,
+      "end": 44.289999999999964,
+      "speaker": 1,
+      "confidence": 0.7451172
+    },
+    {
+      "word": "buat",
+      "punctuated_word": "buat",
+      "start": 44.289999999999964,
+      "end": 44.585000000000036,
+      "speaker": 1,
+      "confidence": 0.9604492
+    },
+    {
+      "word": "seorang",
+      "punctuated_word": "seorang",
+      "start": 45.46499999999992,
+      "end": 45.784999999999854,
+      "speaker": 1,
+      "confidence": 0.8408203
+    },
+    {
+      "word": "trader",
+      "punctuated_word": "trader",
+      "start": 45.784999999999854,
+      "end": 46.26509999999985,
+      "speaker": 1,
+      "confidence": 0.9550781
+    },
+    {
+      "word": "gitu",
+      "punctuated_word": "gitu",
+      "start": 46.26509999999985,
+      "end": 46.50509999999986,
+      "speaker": 1,
+      "confidence": 0.95166016
+    },
+    {
+      "word": "ya",
+      "punctuated_word": "ya,",
+      "start": 46.50509999999986,
+      "end": 46.825000000000045,
+      "speaker": 1,
+      "confidence": 0.7624512
+    },
+    {
+      "word": "yang",
+      "punctuated_word": "yang",
+      "start": 46.825000000000045,
+      "end": 47.325000000000045,
+      "speaker": 1,
+      "confidence": 0.9863281
+    },
+    {
+      "word": "harus",
+      "punctuated_word": "harus",
+      "start": 47.784999999999854,
+      "end": 48.284999999999854,
+      "speaker": 1,
+      "confidence": 0.9770508
+    },
+    {
+      "word": "ada",
+      "punctuated_word": "ada",
+      "start": 48.664999999999964,
+      "end": 48.9849999999999,
+      "speaker": 1,
+      "confidence": 0.96435547
+    },
+    {
+      "word": "keputusan",
+      "punctuated_word": "keputusan",
+      "start": 48.9849999999999,
+      "end": 49.385099999999966,
+      "speaker": 1,
+      "confidence": 0.8388672
+    },
+    {
+      "word": "kayak",
+      "punctuated_word": "kayak",
+      "start": 49.385099999999966,
+      "end": 49.625099999999975,
+      "speaker": 1,
+      "confidence": 0.9472656
+    },
+    {
+      "word": "cut",
+      "punctuated_word": "cut",
+      "start": 49.625099999999975,
+      "end": 49.865099999999984,
+      "speaker": 1,
+      "confidence": 0.6640625
+    },
+    {
+      "word": "loss",
+      "punctuated_word": "loss,",
+      "start": 49.865099999999984,
+      "end": 50.26509999999985,
+      "speaker": 1,
+      "confidence": 0.93603516
+    },
+    {
+      "word": "ada",
+      "punctuated_word": "ada",
+      "start": 50.26509999999985,
+      "end": 50.50509999999986,
+      "speaker": 1,
+      "confidence": 0.7270508
+    },
+    {
+      "word": "kayak",
+      "punctuated_word": "kayak",
+      "start": 50.50509999999986,
+      "end": 51.00509999999986,
+      "speaker": 1,
+      "confidence": 0.9951172
+    },
+    {
+      "word": "terus",
+      "punctuated_word": "terus",
+      "start": 51.22499999999991,
+      "end": 51.46499999999992,
+      "speaker": 1,
+      "confidence": 0.52685547
+    },
+    {
+      "word": "tibatiba",
+      "punctuated_word": "tibatiba",
+      "start": 51.46499999999992,
+      "end": 51.944999999999936,
+      "speaker": 1,
+      "confidence": 0.9902344
+    },
+    {
+      "word": "setelah",
+      "punctuated_word": "setelah",
+      "start": 51.944999999999936,
+      "end": 52.184999999999945,
+      "speaker": 1,
+      "confidence": 0.9980469
+    },
+    {
+      "word": "cut",
+      "punctuated_word": "cut",
+      "start": 52.184999999999945,
+      "end": 52.424999999999955,
+      "speaker": 1,
+      "confidence": 0.9980469
+    },
+    {
+      "word": "loss",
+      "punctuated_word": "loss",
+      "start": 52.424999999999955,
+      "end": 52.585000000000036,
+      "speaker": 1,
+      "confidence": 0.9951172
+    },
+    {
+      "word": "kayak",
+      "punctuated_word": "kayak",
+      "start": 52.585000000000036,
+      "end": 52.825000000000045,
+      "speaker": 1,
+      "confidence": 0.9370117
+    },
+    {
+      "word": "terbang",
+      "punctuated_word": "terbang,",
+      "start": 52.825000000000045,
+      "end": 53.325000000000045,
+      "speaker": 1,
+      "confidence": 0.8991699
+    },
+    {
+      "word": "atau",
+      "punctuated_word": "atau",
+      "start": 53.70499999999993,
+      "end": 53.944999999999936,
+      "speaker": 1,
+      "confidence": 0.9892578
+    },
+    {
+      "word": "mungkin",
+      "punctuated_word": "mungkin",
+      "start": 53.944999999999936,
+      "end": 54.26509999999985,
+      "speaker": 1,
+      "confidence": 0.9951172
+    },
+    {
+      "word": "kayak",
+      "punctuated_word": "kayak",
+      "start": 54.26509999999985,
+      "end": 54.76509999999985,
+      "speaker": 1,
+      "confidence": 0.98828125
+    },
+    {
+      "word": "drawdown",
+      "punctuated_word": "Drawdown",
+      "start": 55.14509999999996,
+      "end": 55.625099999999975,
+      "speaker": 1,
+      "confidence": 0.76904297
+    },
+    {
+      "word": "itu",
+      "punctuated_word": "itu",
+      "start": 55.625099999999975,
+      "end": 56.125099999999975,
+      "speaker": 1,
+      "confidence": 0.94628906
+    },
+    {
+      "word": "lumayan",
+      "punctuated_word": "lumayan",
+      "start": 56.50509999999986,
+      "end": 57.00509999999986,
+      "speaker": 1,
+      "confidence": 0.9951172
+    },
+    {
+      "word": "heboh",
+      "punctuated_word": "heboh",
+      "start": 57.625099999999975,
+      "end": 58.10500000000002,
+      "speaker": 1,
+      "confidence": 0.9819336
+    },
+    {
+      "word": "sampai",
+      "punctuated_word": "sampai",
+      "start": 58.10500000000002,
+      "end": 58.424999999999955,
+      "speaker": 1,
+      "confidence": 0.68066406
+    },
+    {
+      "word": "gak",
+      "punctuated_word": "gak",
+      "start": 58.424999999999955,
+      "end": 58.789999999999964,
+      "speaker": 1,
+      "confidence": 0.36132812
+    },
+    {
+      "word": "di",
+      "punctuated_word": "di",
+      "start": 59.190000000000055,
+      "end": 59.34999999999991,
+      "speaker": 1,
+      "confidence": 0.59375
+    },
+    {
+      "word": "cat",
+      "punctuated_word": "cat",
+      "start": 59.34999999999991,
+      "end": 59.58999999999992,
+      "speaker": 1,
+      "confidence": 0.25170898
+    },
+    {
+      "word": "lagi",
+      "punctuated_word": "lagi",
+      "start": 59.58999999999992,
+      "end": 59.82999999999993,
+      "speaker": 1,
+      "confidence": 0.97802734
+    },
+    {
+      "word": "itu",
+      "punctuated_word": "itu",
+      "start": 59.82999999999993,
+      "end": 59.99000000000001,
+      "speaker": 1,
+      "confidence": 0.42041016
+    },
+    {
+      "word": "kayak",
+      "punctuated_word": "kayak",
+      "start": 59.99000000000001,
+      "end": 60.49000000000001,
+      "speaker": 1,
+      "confidence": 0.94970703
+    },
+    {
+      "word": "gimana",
+      "punctuated_word": "gimana",
+      "start": 61.26999999999998,
+      "end": 61.58999999999992,
+      "speaker": 1,
+      "confidence": 0.8203125
+    },
+    {
+      "word": "sih",
+      "punctuated_word": "sih",
+      "start": 61.58999999999992,
+      "end": 61.82999999999993,
+      "speaker": 1,
+      "confidence": 0.99121094
+    },
+    {
+      "word": "mungkin",
+      "punctuated_word": "mungkin",
+      "start": 61.82999999999993,
+      "end": 61.99000000000001,
+      "speaker": 1,
+      "confidence": 0.80126953
+    },
+    {
+      "word": "kayak",
+      "punctuated_word": "kayak",
+      "start": 61.99000000000001,
+      "end": 62.149999999999864,
+      "speaker": 1,
+      "confidence": 0.8774414
+    },
+    {
+      "word": "untuk",
+      "punctuated_word": "untuk",
+      "start": 62.149999999999864,
+      "end": 62.549999999999955,
+      "speaker": 1,
+      "confidence": 0.9921875
+    },
+    {
+      "word": "keluar",
+      "punctuated_word": "keluar",
+      "start": 62.549999999999955,
+      "end": 62.789999999999964,
+      "speaker": 1,
+      "confidence": 0.99902344
+    },
+    {
+      "word": "dari",
+      "punctuated_word": "dari",
+      "start": 62.789999999999964,
+      "end": 63.02999999999997,
+      "speaker": 1,
+      "confidence": 0.99902344
+    },
+    {
+      "word": "itu",
+      "punctuated_word": "itu",
+      "start": 63.02999999999997,
+      "end": 63.26999999999998,
+      "speaker": 1,
+      "confidence": 0.99316406
+    },
+    {
+      "word": "dan",
+      "punctuated_word": "dan",
+      "start": 63.26999999999998,
+      "end": 63.430000000000064,
+      "speaker": 1,
+      "confidence": 0.85839844
+    },
+    {
+      "word": "apa",
+      "punctuated_word": "apa",
+      "start": 63.430000000000064,
+      "end": 63.58999999999992,
+      "speaker": 1,
+      "confidence": 0.98535156
+    },
+    {
+      "word": "sih",
+      "punctuated_word": "sih",
+      "start": 63.58999999999992,
+      "end": 63.82999999999993,
+      "speaker": 1,
+      "confidence": 0.9980469
+    },
+    {
+      "word": "mungkin",
+      "punctuated_word": "mungkin",
+      "start": 63.82999999999993,
+      "end": 63.99000000000001,
+      "speaker": 1,
+      "confidence": 0.86035156
+    },
+    {
+      "word": "kayak",
+      "punctuated_word": "kayak",
+      "start": 63.99000000000001,
+      "end": 64.30999999999995,
+      "speaker": 1,
+      "confidence": 0.9267578
+    },
+    {
+      "word": "pegangan",
+      "punctuated_word": "pegangan",
+      "start": 64.30999999999995,
+      "end": 64.80999999999995,
+      "speaker": 1,
+      "confidence": 1
+    }
+  ],
+  "title": "Cut Loss Panic & Regret",
+  "uniqueSpeakers": 2,
+  "dominantSpeaker": 0,
+  "clipDuration": 65.1099999999999
+}
