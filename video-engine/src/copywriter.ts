@@ -90,7 +90,7 @@ Buat copy yang terasa NATURAL seperti creator asli, bukan bot atau iklan.
 `;
 
   let data: any = null;
-  const maxRetries = 3;
+  const maxRetries = 1;
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       if (attempt > 1) console.log(`[Copywriter] Retrying (Attempt ${attempt}/${maxRetries})...`);

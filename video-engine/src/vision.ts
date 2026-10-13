@@ -19,7 +19,7 @@ export async function detectVideoLayout(videoPath: string): Promise<VideoLayout>
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     console.warn('[Vision] GEMINI_API_KEY not defined, defaulting to MIXED layout.');
-    return 'MIXED';
+    return 'SINGLE_CENTERED';
   }
 
   try {
@@ -77,20 +77,12 @@ Return ONLY a strict JSON object: {"layout": "SINGLE_CENTERED"} (or "SIDE_BY_SID
     ];
 
     let responseText = '';
-    const maxRetries = 3;
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
-      try {
-        if (attempt > 1) console.log(`[Vision] Retrying (Attempt ${attempt}/${maxRetries})...`);
-        const result = await model.generateContent(promptParts);
-        responseText = result.response.text().trim();
-        break;
-      } catch (error: any) {
-        if (attempt === maxRetries) throw error;
-        const isRateLimit = error?.message?.includes('429') || error?.status === 429;
-        const waitTime = isRateLimit ? 65000 : 5000;
-        console.warn(`[Vision] AI Error on attempt ${attempt}: ${error.message || error}. Waiting ${waitTime / 1000} seconds before retry...`);
-        await new Promise(resolve => setTimeout(resolve, waitTime));
-      }
+    try {
+      const result = await model.generateContent(promptParts);
+      responseText = result.response.text().trim();
+    } catch (error: any) {
+      console.warn(`[Vision] Vision API not responding (${error.message || error}), fast-fallback to SINGLE_CENTERED.`);
+      return 'SINGLE_CENTERED';
     }
     // Clean response just in case
     const cleanText = responseText.replace(/```json/g, '').replace(/```/g, '').trim();
@@ -109,7 +101,7 @@ Return ONLY a strict JSON object: {"layout": "SINGLE_CENTERED"} (or "SIDE_BY_SID
     return layout;
 
   } catch (error) {
-    console.error(`[Vision] Error detecting layout, defaulting to MIXED:`, error);
+    console.error(`[Vision] Error detecting layout, defaulting to SINGLE_CENTERED:`, error);
     return 'MIXED';
   }
 }

@@ -103,7 +103,7 @@ ${transcriptText}
 ---
   `;
 
-  const maxRetries = 3;
+  const maxRetries = 1;
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       if (attempt > 1) {
