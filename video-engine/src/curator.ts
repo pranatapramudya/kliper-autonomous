@@ -30,7 +30,7 @@ export async function curateViralMoments(transcriptText: string, campaignContext
 
   // Using gemini-1.5-flash as the fast and efficient model (Gemini 3.6 Flash as mentioned in PRD is likely a typo for gemini-1.5-flash or just a future version name, we'll use gemini-1.5-flash)
   const model = genAI.getGenerativeModel({
-    model: "gemini-3.5-flash-lite",
+    model: "gemini-3.6-flash",
     generationConfig: {
       responseMimeType: "application/json",
       responseSchema: {

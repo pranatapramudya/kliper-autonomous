@@ -39,7 +39,7 @@ export async function downloadBRolls(
   // Generate search keywords using Gemini
   const genAI = new GoogleGenerativeAI(geminiKey);
   const model = genAI.getGenerativeModel({
-    model: "gemini-3.5-flash-lite",
+    model: "gemini-3.6-flash",
     generationConfig: {
       responseMimeType: "application/json",
       responseSchema: {
