@@ -82,18 +82,46 @@ Transkrip Time-Coded:
   `;
 
   let brollDefs: any[] = [];
-  try {
-    const result = await model.generateContent(prompt);
-    const data = JSON.parse(result.response.text());
-    if (data.brolls && Array.isArray(data.brolls)) {
-      brollDefs = data.brolls;
+  const groqKey = process.env.GROQ_API_KEY;
+
+  if (groqKey) {
+    try {
+      console.log(`[B-Roll] Mencari rekomendasi B-Roll Pexels via Groq...`);
+      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + groqKey, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'openai/gpt-oss-120b',
+          messages: [
+            { role: 'system', content: 'Pilih 1-2 B-Roll stock footage Pexels dan SFX yang relevan dari transkrip video. Keyword harus bahasa Inggris sederhana (contoh: money falling, luxury car, sad face). Output STRICT JSON: {"brolls": [{"keyword": "money falling", "sfx_keyword": "cash register", "start_time": 5.0, "duration": 2.5}]}' },
+            { role: 'user', content: timeCodedText }
+          ],
+          response_format: { type: 'json_object' }
+        })
+      });
+      const resData: any = await res.json();
+      const parsed = JSON.parse(resData.choices?.[0]?.message?.content || '{}');
+      if (parsed.brolls && Array.isArray(parsed.brolls) && parsed.brolls.length > 0) {
+        brollDefs = parsed.brolls;
+        console.log(`[B-Roll] Groq sukses menemukan ${brollDefs.length} B-Roll Pexels untuk klip ${clipId}!`);
+      }
+    } catch (gErr: any) {
+      console.warn('[B-Roll] Groq warning:', gErr.message);
     }
-  } catch (error: any) {
-    console.warn(`[B-Roll] AI B-Roll skipped (${error.message || error}), rendering clean high-retention speaker view.`);
-    return [];
   }
 
-  console.log(`[B-Roll] Gemini suggested ${brollDefs.length} B-Roll(s) for clip ${clipId}.`);
+  if (brollDefs.length === 0) {
+    try {
+      const result = await model.generateContent(prompt);
+      const data = JSON.parse(result.response.text());
+      if (data.brolls && Array.isArray(data.brolls)) {
+        brollDefs = data.brolls;
+      }
+    } catch (error: any) {
+      console.warn(`[B-Roll] AI B-Roll skipped (${error.message || error}), rendering clean high-retention speaker view.`);
+      return [];
+    }
+  }
 
   const downloadedItems: BRollItem[] = [];
 

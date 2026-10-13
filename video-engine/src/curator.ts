@@ -176,7 +176,7 @@ try {
 
 const [clips1, clips2] = await Promise.all([
               callGroq(chunk1, 3, 1),
-              callGroq(chunk2, 2, 4)
+              callGroq(chunk2, 3, 4)
             ]);
 
             const merged: ClipData[] = [...clips1, ...clips2].slice(0, 5).map((c: any, i: number) => ({

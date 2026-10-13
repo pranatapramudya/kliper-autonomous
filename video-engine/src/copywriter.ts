@@ -90,22 +90,39 @@ Buat copy yang terasa NATURAL seperti creator asli, bukan bot atau iklan.
 `;
 
   let data: any = null;
-  const maxRetries = 1;
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+  const groqKey = process.env.GROQ_API_KEY;
+
+  if (groqKey) {
     try {
-      if (attempt > 1) console.log(`[Copywriter] Retrying (Attempt ${attempt}/${maxRetries})...`);
+      console.log('[Copywriter] Generating copy via Groq (high-speed)...');
+      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + groqKey, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'openai/gpt-oss-120b',
+          messages: [
+            { role: 'system', content: 'Anda adalah Copywriter pro. Buatkan caption dan hashtag untuk TikTok, Reels, Shorts. Output STRICT JSON: {"copies": [{"clip_id": 1, "tiktok_caption": "...", "tiktok_hashtags": ["#fyp"], "youtube_caption": "...", "youtube_hashtags": ["#shorts"], "instagram_caption": "...", "instagram_hashtags": ["#reels"]}]}' },
+            { role: 'user', content: prompt }
+          ],
+          response_format: { type: 'json_object' }
+        })
+      });
+      const resData: any = await res.json();
+      data = JSON.parse(resData.choices?.[0]?.message?.content || '{}');
+      if (data && data.copies && data.copies.length > 0) {
+        console.log(`[Copywriter] Groq sukses menghasilkan caption untuk ${data.copies.length} klip!`);
+      }
+    } catch (gErr: any) {
+      console.warn('[Copywriter] Groq warning:', gErr.message);
+    }
+  }
+
+  if (!data || !data.copies || data.copies.length === 0) {
+    try {
       const result = await model.generateContent(prompt);
       data = JSON.parse(result.response.text());
-      break;
-    } catch (error: any) {
-      if (attempt === maxRetries) {
-        console.error(`[Copywriter] Failed after ${maxRetries} attempts:`, error);
-        throw error;
-      }
-      const isRateLimit = error?.message?.includes('429') || error?.status === 429;
-      const waitTime = isRateLimit ? 65000 : 5000;
-      console.warn(`[Copywriter] AI Error on attempt ${attempt}: ${error.message || error}. Waiting ${waitTime / 1000} seconds before retry...`);
-      await new Promise(resolve => setTimeout(resolve, waitTime));
+    } catch (gemErr: any) {
+      console.warn('[Copywriter] Gemini warning:', gemErr.message);
     }
   }
 
