@@ -121,13 +121,62 @@ ${transcriptText}
         return { clips: [] };
       }
     } catch (error: any) {
+      console.warn(`[Curator] Gemini attempt ${attempt} warning: ${error.message || error}`);
       if (attempt === maxRetries) {
+        const groqKey = process.env.GROQ_API_KEY;
+        if (groqKey) {
+          console.log(`[Curator] ⚡ Activating high-speed Groq fallback (zero-delay)...`);
+          try {
+            const halfIdx = Math.floor(transcriptText.length / 2);
+            const chunk1 = transcriptText.substring(0, halfIdx);
+            const chunk2 = transcriptText.substring(halfIdx);
+
+            const callGroq = async (chunk: string, count: number, startId: number) => {
+              const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                method: "POST",
+                headers: { "Authorization": `Bearer ${groqKey}`, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  model: "openai/gpt-oss-120b",
+                  messages: [
+                    { role: "system", content: `Anda adalah TikTok Content Strategist tingkat dewa. Pilih TEPAT ${count} momen viral (durasi 30-60s) dari transkrip berikut. Wajib prioritaskan hook tajam dan topik universal yang relate. Outputkan STRICT JSON: {"clips": [{"id": ${startId}, "title": "Judul (Maks 7 kata)", "start_time": 10, "end_time": 45, "viral_reasoning": "Alasan", "dominant_speaker": 0}], "host_speaker_id": 0}` },
+                    { role: "user", content: chunk }
+                  ],
+                  response_format: { type: "json_object" }
+                })
+              });
+              const resData = await res.json();
+              const parsed = JSON.parse(resData.choices?.[0]?.message?.content || '{}');
+              return parsed.clips || [];
+            };
+
+            const [clips1, clips2] = await Promise.all([
+              callGroq(chunk1, 3, 1),
+              callGroq(chunk2, 2, 4)
+            ]);
+
+            const merged: ClipData[] = [...clips1, ...clips2].slice(0, 5).map((c: any, i: number) => ({
+              id: i + 1,
+              title: c.title || `Klip Viral ${i + 1}`,
+              start_time: Number(c.start_time),
+              end_time: Number(c.end_time),
+              viral_reasoning: c.viral_reasoning || "High viral potential",
+              dominant_speaker: c.dominant_speaker ?? 0
+            }));
+
+            if (merged.length > 0) {
+              console.log(`[Curator] 🚀 Groq fallback succeeded: ${merged.length} viral clips curated!`);
+              return { clips: merged, hostSpeakerId: 0 };
+            }
+          } catch (groqErr: any) {
+            console.error(`[Curator] Groq fallback error:`, groqErr.message || groqErr);
+          }
+        }
         console.error(`[Curator] Failed to curate viral moments after ${maxRetries} attempts:`, error);
         throw error;
       }
       const isRateLimit = error?.message?.includes('429') || error?.status === 429;
-      const waitTime = isRateLimit ? 65000 : 5000; // Tunggu 65 detik jika kena limit
-      console.warn(`[Curator] AI Error on attempt ${attempt}: ${error.message || error}. Waiting ${waitTime / 1000} seconds before retry...`);
+      const waitTime = isRateLimit ? 10000 : 3000;
+      console.warn(`[Curator] Waiting ${waitTime / 1000}s before retry...`);
       await new Promise(resolve => setTimeout(resolve, waitTime));
     }
   }
