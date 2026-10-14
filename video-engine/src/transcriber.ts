@@ -1,3 +1,4 @@
+import path from 'path';
 import fs from 'fs';
 import youtubedl from 'youtube-dl-exec';
 import ffmpeg from 'fluent-ffmpeg';
@@ -35,33 +36,45 @@ export async function downloadVideo(url: string, outputPath: string): Promise<st
     }
   }
 
+  // Cari cookies.txt di beberapa lokasi yang mungkin
+  const possibleCookiePaths = [
+    path.join(__dirname, '..', 'cookies.txt'),
+    path.join(__dirname, 'cookies.txt'),
+    path.join(process.cwd(), 'cookies.txt'),
+    path.join(process.cwd(), 'video-engine', 'cookies.txt')
+  ];
+  const validCookiePath = possibleCookiePaths.find(p => fs.existsSync(p));
+
   const maxRetries = 4;
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
-      // Attempt 1: Bypass bot checks using iOS/Android clients without cookies
-      // Attempt 2: Chrome cookies
-      // Attempt 3: Edge cookies
-      // Attempt 4: Manual cookies.txt
       const options: any = {
         output: outputPath,
-        format: 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',
+        format: 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
         noCheckCertificates: true,
         noWarnings: true,
         ffmpegLocation: ffmpegInstaller.path,
-        jsRuntimes: 'node',
-        sleepRequests: 2
+        jsRuntimes: 'node'
       };
-      
-      if (attempt === 2) {
-        options.cookiesFromBrowser = 'chrome';
-        console.log('[Transcriber] Attempting to bypass bot check using Chrome cookies...');
-      } else if (attempt === 3) {
-        options.cookiesFromBrowser = 'edge';
-        console.log('[Transcriber] Attempting to bypass bot check using Edge cookies...');
-      } else if (attempt === 4) {
-        options.cookies = 'cookies.txt';
-        console.log('[Transcriber] Attempting to bypass bot check using cookies.txt...');
+
+      // Strategy 1 (Priority): Pakai cookies.txt jika ada
+      if (validCookiePath && attempt === 1) {
+        options.cookies = validCookiePath;
+        console.log("[Transcriber] Menggunakan cookies.txt: " + validCookiePath);
+      } else if (attempt === 2) {
+        // Strategy 2: Android client extractor args (sering lolos tanpa cookies)
+        options.extractorArgs = 'youtube:player_client=android,web';
+        console.log('[Transcriber] [Android] Mencoba bypass bot check menggunakan Android client...');
+      } else if (attempt === 3 && validCookiePath) {
+        // Strategy 3: Kombinasi cookies + android
+        options.cookies = validCookiePath;
+        options.extractorArgs = 'youtube:player_client=android,web';
+        console.log('[Transcriber] [Cookie+Android] Mencoba kombinasi cookies + Android client...');
+      } else {
+        // Strategy 4: Standard fallback
+        console.log("[Transcriber] Standard download attempt: " + attempt);
       }
+
       await youtubedl(url, options);
       break; // Success
     } catch (error: any) {
