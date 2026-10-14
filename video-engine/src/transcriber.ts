@@ -1,4 +1,4 @@
-import path from 'path';
+﻿import path from 'path';
 import fs from 'fs';
 import youtubedl from 'youtube-dl-exec';
 import ffmpeg from 'fluent-ffmpeg';
@@ -54,7 +54,7 @@ export async function downloadVideo(url: string, outputPath: string): Promise<st
         noCheckCertificates: true,
         noWarnings: true,
         ffmpegLocation: ffmpegInstaller.path,
-        jsRuntimes: 'node'
+        jsRuntimes: 'node', remoteComponents: 'ejs:github'
       };
 
       // Strategy 1 (Priority): Pakai cookies.txt jika ada
@@ -163,16 +163,16 @@ export async function transcribeAudio(audioPath: string): Promise<any> {
       smart_format: true,
       encoding: "linear16",
       sample_rate: 16000,
-      diarize: true,       // 🎙️ Speaker diarization — tau siapa yang ngomong
-      utterances: true,    // 📝 Group kata per giliran bicara
-      punctuate: true,     // ✍️  Tambah tanda baca otomatis
+      diarize: true,       // ðŸŽ™ï¸ Speaker diarization â€” tau siapa yang ngomong
+      utterances: true,    // ðŸ“ Group kata per giliran bicara
+      punctuate: true,     // âœï¸  Tambah tanda baca otomatis
     } as any
   ) as any;
 
   const rawWords = result?.results?.channels[0]?.alternatives[0]?.words || [];
   const transcript = result?.results?.channels[0]?.alternatives[0]?.transcript || "";
 
-  // Normalize words — pastikan speaker field selalu ada
+  // Normalize words â€” pastikan speaker field selalu ada
   const words = rawWords.map((w: any) => ({
     word: w.word,
     punctuated_word: w.punctuated_word || w.word,
@@ -188,7 +188,7 @@ export async function transcribeAudio(audioPath: string): Promise<any> {
   if (words.length === 0) {
     console.warn(`[Transcriber] Warning: Deepgram returned no words.`);
   } else {
-    console.log(`[Transcriber] ✅ Transcription complete: ${words.length} words, ${uniqueSpeakers} speaker(s) detected.`);
+    console.log(`[Transcriber] âœ… Transcription complete: ${words.length} words, ${uniqueSpeakers} speaker(s) detected.`);
   }
 
   // Build speaker-labeled transcript for AI curator with timestamps!
@@ -209,10 +209,11 @@ export async function transcribeAudio(audioPath: string): Promise<any> {
 
     speakerLabeledTranscript += `${w.punctuated_word} `;
 
-    if (w.punctuated_word.match(/[.?!。？！]$/)) {
+    if (w.punctuated_word.match(/[.?!ã€‚ï¼Ÿï¼]$/)) {
       newSentence = true;
     }
   }
 
   return { words, transcript: speakerLabeledTranscript.trim() || transcript, uniqueSpeakers };
 }
+
