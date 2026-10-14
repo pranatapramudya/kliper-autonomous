@@ -127,59 +127,70 @@ ${transcriptText}
         if (groqKey) {
           console.log(`[Curator] ⚡ Activating high-speed Groq fallback (zero-delay)...`);
           try {
-            const halfIdx = Math.floor(transcriptText.length / 2);
-            const chunk1 = transcriptText.substring(0, halfIdx);
-            const chunk2 = transcriptText.substring(halfIdx);
+// Segmen transkrip diproses dalam 3 bagian untuk menjamin tepat 5 klip terbaik
 
-            const callGroq = async (chunk: string, count: number, startId: number) => {
+                        const callGroq = async (chunk: string, count: number, startId: number): Promise<ClipData[]> => {
               const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
                 method: "POST",
-                headers: { "Authorization": `Bearer ${groqKey}`, "Content-Type": "application/json" },
+                headers: { "Authorization": "Bearer " + groqKey, "Content-Type": "application/json" },
                 body: JSON.stringify({
                   model: "openai/gpt-oss-120b",
                   messages: [
-                    { role: "system", content: `Anda adalah TikTok Content Strategist tingkat dewa. Pilih TEPAT ${count} momen viral (durasi 30-60s) dari transkrip berikut. Wajib prioritaskan hook tajam dan topik universal yang relate. Outputkan STRICT JSON: {"clips": [{"id": ${startId}, "title": "Judul (Maks 7 kata)", "start_time": 10, "end_time": 45, "viral_reasoning": "Alasan", "dominant_speaker": 0}], "host_speaker_id": 0}` },
-                    { role: "user", content: chunk }
-                  ],
-                  response_format: { type: "json_object" }
-                })
-              });
-              const resData = await res.json();
-              const parsed = JSON.parse(resData.choices?.[0]?.message?.content || '{}');
-              return parsed.clips || [];
+                    {
+                      role: "system",
+                      content: `Anda adalah TikTok Content Strategist tingkat dewa. Pilih TEPAT ${count} momen PALING VIRAL (durasi 30-60s) dari transkrip podcast ini.\n\nATURAN MUTLAK HOOK & JUDUL:\n1. HOOK TITLE WAJIB 100% BAHASA INDONESIA (Maksimal 6-7 kata). DILARANG KERAS BAHASA INGGRIS! Buat pertanyaan atau pernyataan provokatif menohok (Contoh: "Kenapa Generasi Muda Sekarang Hopeless?", "Alasan Orang Rajin Tetap Miskin").\n2. TOPIK UNIVERSAL EMOSIONAL: Prioritaskan struggle finansial, mentalitas sukses/gagal, masalah Gen Z/Millennial, attention span, atau realita kehidupan yang relate dengan 95% audiens. Hindari topik teknis rumit atau basa-basi.\n3. DETIK 0-3: Potong langsung di punchline mengejutkan.\n4. Durasi 30-60 detik dengan akhir kalimat utuh.\n\nOutput STRICT JSON:\n{"clips": [{"id": ${startId}, "title": "Judul Bahasa Indonesia", "start_time": 10.5, "end_time": 45.2, "viral_reasoning": "Alasan", "dominant_speaker": 0}]}`
+                  },
+                  { role: "user", content: chunk }
+                ],
+                response_format: { type: "json_object" }
+            })
+            });
+            const resData: any = await res.json();
+            const parsed = JSON.parse(resData.choices?.[0]?.message?.content || '{}');
+            return parsed.clips || [];
             };
 
             let detectedHostId = 0;
-try {
-  const introSnippet = transcriptText.substring(0, 3500);
-  const hostCheckRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-    method: "POST",
-    headers: { "Authorization": "Bearer " + groqKey, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      model: "openai/gpt-oss-120b",
-      messages: [
-        { role: "system", content: "Analisis cuplikan transkrip podcast berikut. Tentukan siapa yang bertindak sebagai HOST atau pewawancara (yang bertanya, membuka acara, atau memoderasi) dan siapa GUEST (tamu narasumber yang diwawancarai). Outputkan format JSON persis: {\"host_speaker_id\": 0 atau 1}" },
-        { role: "user", content: introSnippet }
-      ],
-      response_format: { type: "json_object" }
-    })
-  });
-  const hostData = await hostCheckRes.json();
-  const parsedHost = JSON.parse(hostData.choices?.[0]?.message?.content || "{}");
-  if (typeof parsedHost.host_speaker_id === "number") {
-    detectedHostId = parsedHost.host_speaker_id;
-    console.log("[Curator] 🎙️ Groq host detector: Speaker " + detectedHostId + " terdeteksi sebagai HOST!");
-  }
-} catch (hErr: any) {
-  console.warn("[Curator] Warning host detection:", hErr.message);
-}
+            try {
+              const introSnippet = transcriptText.substring(0, 3500);
+              const hostCheckRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                method: "POST",
+                headers: { "Authorization": "Bearer " + groqKey, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  model: "openai/gpt-oss-120b",
+                  messages: [
+                    { role: "system", content: "Analisis cuplikan transkrip podcast berikut. Tentukan siapa yang bertindak sebagai HOST atau pewawancara dan siapa GUEST. Outputkan format JSON persis: {\"host_speaker_id\": 0 atau 1}" },
+                    { role: "user", content: introSnippet }
+                ],
+                response_format: { type: "json_object" }
+              })
+            });
+            const hostData: any = await hostCheckRes.json();
+            const parsedHost = JSON.parse(hostData.choices?.[0]?.message?.content || "{}");
+            if (typeof parsedHost.host_speaker_id === "number") {
+              detectedHostId = parsedHost.host_speaker_id;
+              console.log("[Curator] Groq host detector: Speaker " + detectedHostId + " terdeteksi sebagai HOST!");
+            }
+            } catch (hErr: any) {
+              console.warn("[Curator] Warning host detection:", hErr.message);
+            }
 
-const [clips1, clips2] = await Promise.all([
-              callGroq(chunk1, 3, 1),
-              callGroq(chunk2, 3, 4)
+                        const partLen = Math.floor(transcriptText.length / 3);
+            const p1 = transcriptText.substring(0, partLen);
+            const p2 = transcriptText.substring(partLen, partLen * 2);
+            const p3 = transcriptText.substring(partLen * 2);
+
+            console.log('[Curator] Mengekstrak momen viral dari 3 segmen transkrip (Target: TEPAT 5 klip terbaik)...');
+            const [c1, c2, c3] = await Promise.all([
+              callGroq(p1, 2, 1),
+              callGroq(p2, 2, 3),
+              callGroq(p3, 2, 5)
             ]);
 
-            const merged: ClipData[] = [...clips1, ...clips2].slice(0, 5).map((c: any, i: number) => ({
+            const allCandidates = [...c1, ...c2, ...c3];
+            console.log(`[Curator] Total kandidat terkumpul: ${allCandidates.length} klip.`);
+
+            const merged: ClipData[] = allCandidates.slice(0, 5).map((c: any, i: number) => ({
               id: i + 1,
               title: c.title || `Klip Viral ${i + 1}`,
               start_time: Number(c.start_time),
