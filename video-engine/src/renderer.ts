@@ -86,7 +86,7 @@ export function generateASS(
   let styles = 'Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n';
 
   // Hook title — professional dark card background box (alignment 8 = top center, BorderStyle 3 = opaque box)
-  styles += `Style: Hook,Arial,48,&H00FFFFFF,&H00FFFFFF,&H00000000,&HD9141414,-1,0,0,0,100,100,1,0,3,20,0,8,60,60,180,1\n`;
+  styles += `Style: Hook,Arial,52,&H00FFFFFF,&H00FFFFFF,&H00000000,&HE6101010,-1,0,0,0,100,100,1,0,3,24,0,8,60,60,180,1\n`;
 
   // Watermark — bottom center (alignment 2)
   // MarginV=280 to clear bottom UI (playbar/captions). Color = White and Gray (3D effect).
@@ -101,7 +101,7 @@ export function generateASS(
   for (let s = 0; s < Math.max(numSP, 5); s++) {
     const primary = ACTIVE_COLOR[s] ?? ACTIVE_COLOR[0];
     const secondary = DIM_COLOR[s] ?? DIM_COLOR[0];
-    styles += `Style: SP${s},Arial,70,${primary},${secondary},&H00000000,&HCC000000,-1,0,0,0,100,100,0,0,1,5,4,2,40,40,750,1\n`;
+    styles += `Style: SP${s},Arial,74,${primary},${secondary},&H00000000,&HFF000000,-1,0,0,0,100,100,0,0,1,7,5,2,40,40,760,1\n`;
   }
 
   // ── Events ──
@@ -109,10 +109,10 @@ export function generateASS(
 
   // Hook overlay — first 3.5 seconds (layer 10)
   const hookText = esc(title);
-  events += `Dialogue: 10,${t(0)},${t(3.5)},Hook,,0,0,0,,{\\fscx85\\fscy85\\c&H0000F5FF&}⚡ KLIPER MEDIA | HIGHLIGHT\\N{\\r}${hookText}\n`;
+  events += `Dialogue: 10,${t(0)},${t(6.0)},Hook,,0,0,0,,{\\b1\\c&H0000F5FF&}“{\\c&H00FFFFFF&}${hookText}{\\c&H0000F5FF&}”\n`;
 
   // Watermark — full duration after hook (layer 5)
-  events += `Dialogue: 5,${t(3.5)},${t(clipDuration + 10)},Wm,,0,0,0,,KLIPER MEDIA\n`;
+  events += `Dialogue: 5,${t(6.0)},${t(clipDuration + 10)},Wm,,0,0,0,,KLIPER MEDIA\n`;
 
   // Speaker badge — track active speaker accurately for instant transitions (layer 6)
   const badgeSegments: { start: number; end: number; spk: number }[] = [];
@@ -138,7 +138,7 @@ export function generateASS(
       : clipDuration + 1;             // last segment → hold until clip ends
     const label = SPEAKER_LABELS[seg.spk] ?? `SPEAKER ${seg.spk}`;
     const badgeColor = ACTIVE_COLOR[seg.spk] ?? ACTIVE_COLOR[0];
-    const actualStart = Math.max(seg.start, 3.5);
+    const actualStart = Math.max(seg.start, 6.0);
     if (actualStart < segEnd) {
       events += `Dialogue: 6,${t(actualStart)},${t(segEnd)},Badge,,0,0,0,,{\\1c${badgeColor}\\bord3}● ${label}\n`;
     }

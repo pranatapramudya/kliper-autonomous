@@ -39,6 +39,8 @@ export async function curateViralMoments(transcriptText: string, campaignContext
           host_speaker_id: { type: "integer", description: "The ID of the speaker who is the main host or interviewer." },
           clips: {
             type: "array",
+            minItems: 5,
+            maxItems: 5,
             items: {
               type: "object",
               properties: {
@@ -69,10 +71,21 @@ export async function curateViralMoments(transcriptText: string, campaignContext
 const prompt = `
 Anda adalah seorang TikTok & YouTube Shorts Content Strategist tingkat dewa yang sudah menghasilkan ratusan konten viral berpenonton jutaan views. Tugas Anda adalah menganalisis transkrip dari podcast/video berdurasi panjang dan mengekstrak HANYA momen-momen yang benar-benar berpotensi viral (FYP) tinggi. 
 
-ATURAN JUMLAH KLIP (KUALITAS POWERFUL > KUANTITAS): 
-Anda HARUS menghasilkan TEPAT 5 klip terbaik (tidak boleh kurang, tidak boleh lebih). Jangan asal potong dan JANGAN pilih klip biasa/filler! HANYA pilih 5 momen PALING EMOSIONAL, PALING MENOHOK, PALING KONTROVERSIAL/INSIGHTFUL, dan PALING BERPOTENSI MEMICU DEBAT/FYP MASIF (10K+ sampai 100K+ views). Masing-masing klip berdurasi 30-60 detik (sweet spot 35-50 detik).
+ATURAN JUMLAH & 5 STRATEGI SUDUT PANDANG VIRAL (WAJIB TEPAT 5 KLIP BERBEDA):
+Anda HARUS menghasilkan TEPAT 5 klip terbaik (wajib tepat 5, tidak boleh kurang/lebih) dengan mengaplikasikan "THE 5-ANGLE VIRAL FORMULA" agar seluruh portofolio konten memiliki peluang FYP/Viral masif:
 
-WAJIB: Anda HARUS berpikir dan bernalar secara mendalam dari awal hingga akhir video untuk benar-benar menangkap intisari (essence) terdalam dari obrolan tersebut. Klip yang Anda pilih HARUS memiliki muatan yang kuat untuk memancing reaksi emosional audiens (merinding, marah, relate, terharu, atau tercerahkan).
+1. KLIP 1 — THE POLARIZING / DEBATE HOOK (Target: Pemicu Kolom Komentar):
+   Pilih momen opini kontroversial, menantang status quo, atau memicu perdebatan sengit antara kubu pro vs kontra. Komentar aktif adalah faktor pendorong algoritma #1!
+2. KLIP 2 — THE SHOCKING STORY / PLOT TWIST (Target: Pemicu Retention & Watch Time 100%):
+   Pilih momen cerita kegagalan pahit, pengkhianatan, kerugian besar, atau plot twist dramatis dalam hidup narasumber.
+3. KLIP 3 — THE COUNTER-INTUITIVE TRUTH (Target: Pemicu Curiosity Gap):
+   Pilih momen di mana narasumber membongkar fakta yang menabrak pemikiran umum (misal: kenapa kerja keras tanpa arah itu jebakan, rahasia di balik industri, dsb).
+4. KLIP 4 — THE UNIVERSAL RELATABLE STRUGGLE (Target: Pemicu Share ke Teman / Story):
+   Pilih momen yang menyuarakan keresahan batin yang dialami 90% audiens muda (masalah finansial, overthinking masa depan, burnout, quarter-life crisis).
+5. KLIP 5 — THE GOLDEN ACTIONABLE INSIGHT (Target: Pemicu Tombol Save / Bookmark):
+   Pilih momen petuah/strategi praktis yang sangat "daging" dan berbobot sehingga penonton merasa wajib menyimpannya untuk dipelajari lagi.
+
+Durasi setiap klip: 30 hingga 60 detik (sweet spot 35-50 detik). Potong langsung ke punchline awal (detik 0-3 tanpa salam/basa-basi).
 
 ${speakerContext}${campaignInstruction}
 KRITERIA KLIP VIRAL (WAJIB DIPENUHI - STANDAR TINGGI FYP):
@@ -113,12 +126,13 @@ ${transcriptText}
       const responseText = result.response.text();
       const data = JSON.parse(responseText);
 
-      if (data.clips && data.clips.length > 0) {
-        console.log(`[Curator] Successfully curated ${data.clips.length} viral clips. (Detected Host: Speaker ${data.host_speaker_id})`);
-        return { clips: data.clips, hostSpeakerId: data.host_speaker_id };
-      } else {
-        console.warn(`[Curator] Warning: AI returned 0 clips.`);
-        return { clips: [] };
+      if (data.clips && data.clips.length >= 5) {
+        const top5 = data.clips.slice(0, 5).map((c: any, idx: number) => ({ ...c, id: idx + 1 }));
+        console.log(`[Curator] Successfully curated ${top5.length} viral clips with 5 strategic angles! (Detected Host: Speaker ${data.host_speaker_id})`);
+        return { clips: top5, hostSpeakerId: data.host_speaker_id };
+      } else if (data.clips && data.clips.length > 0 && attempt === maxRetries) {
+        console.log(`[Curator] Gemini returned ${data.clips.length} clips. Normalizing IDs...`);
+        return { clips: data.clips.map((c: any, idx: number) => ({ ...c, id: idx + 1 })), hostSpeakerId: data.host_speaker_id };
       }
     } catch (error: any) {
       console.warn(`[Curator] Gemini attempt ${attempt} warning: ${error.message || error}`);

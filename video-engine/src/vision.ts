@@ -58,7 +58,7 @@ export async function detectVideoLayout(videoPath: string): Promise<VideoLayout>
     // 3. Send to Gemini 3.5 Flash Vision
     console.log(`[Vision] Analyzing 3 frames with Gemini 3.5 Flash Vision...`);
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-3.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `Analyze these 3 frames from a video for short-form vertical video (TikTok/Reels 9:16).
 We need the best layout to maximize watch time and avoid ugly letterbox black/blurry bars:
